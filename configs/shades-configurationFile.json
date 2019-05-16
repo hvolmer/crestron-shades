@@ -1,0 +1,26 @@
+{
+  "template": {
+    "rooms": [],
+    "info": {
+      "requiredControlSofwareVersion": "",
+      "systemType": ""
+    },
+    "devices": [
+      {
+        "key": "master-door-shade",
+        "name": "Master Door Shade",
+        "type": "csmqmtdc2564cn",
+        "group": "shades",
+        "uid": 1,
+        "properties": {
+          "control": {
+            "cresnetId": "03"
+          }
+        }
+      }
+    ]
+  },
+  "system" : {},
+  "template_url": "https://portal-demo.cloud.pepperdash.com/templates/319b6774-6a71-4dad-952a-a7ac875f1dc8/#/summary",
+  "system_url": "https://portal-demo.cloud.pepperdash.com/systems/ce0178af-8ce0-4577-9c52-eeb38f54811e/#/summary"
+}

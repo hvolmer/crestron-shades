@@ -1,0 +1,13 @@
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\bin\Debug\crestron-shades.dll
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\bin\Debug\crestron-shades.pdb
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\bin\Debug\Crestron.SimplSharpPro.DeviceSupport.dll
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\bin\Debug\Crestron.SimplSharpPro.Shades.dll
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\bin\Debug\PepperDash_Core.dll
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\bin\Debug\PepperDash_Essentials_Core.dll
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\bin\Debug\SimplSharpSQLHelperInterface.dll
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\bin\Debug\SimplSharpNewtonsoft.dll
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\bin\Debug\SimplSharpTimerEventInterface.dll
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\bin\Debug\SimplSharpReflectionInterface.dll
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\obj\Debug\crestron-shades.dll
+C:\Users\hvolmer\Desktop\working\crestron-shades\crestron-shades\obj\Debug\crestron-shades.pdb
