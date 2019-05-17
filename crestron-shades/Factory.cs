@@ -12,22 +12,17 @@ namespace PepperDash.Essentials.Plugin
 {
 	public class Factory: IGetCrestronDevice
 	{
-
-		public static CrestronControlSystem ControlSystem;
-
-		#region IGetDevice Members
-
+		/// <summary>
+		/// Factory method for assembly.
+		/// </summary>
+		/// <param name="dc">Device config object</param>
+		/// <param name="cs">CrestronControlSystem, because we need it for Crestron things</param>
+		/// <returns>Shade device controller</returns>
 		public PepperDash.Core.IKeyed GetDevice(PepperDash.Essentials.Core.Config.DeviceConfig dc, CrestronControlSystem cs)
 		{
-			var type = dc.Type.ToLower();
-			if (type == "csmqmtdc2564cn")
-			{
-				return new CrestronBasicShadesController(dc, cs);
-			}
-
-			return null;
+			// Possibly add switching if more device controller types are necessary
+			return CrestronBasicShadesController.GetDevice(dc, cs);
 		}
-		#endregion
 	}
 }
 
