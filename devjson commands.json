@@ -1,0 +1,6 @@
+devjson:1 {"deviceKey":"family-door-shade","methodName":"Open"}
+devjson:1 {"deviceKey":"family-door-shade","methodName":"Close"}
+devjson:1 {"deviceKey":"family-door-shade","methodName":"SetPosition", "params":[ 50 ]}
+devjson:1 {"deviceKey":"family-south-left-shade","methodName":"Close"}
+devjson:1 {"deviceKey":"family-south-right-shade","methodName":"Close"}
+

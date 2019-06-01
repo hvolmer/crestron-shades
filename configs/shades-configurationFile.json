@@ -7,8 +7,8 @@
     },
     "devices": [
       {
-        "key": "master-door-shade",
-        "name": "Master Door Shade",
+        "key": "dining-shade",
+        "name": "Dining Shade",
         "type": "csmqmtdc2564cn",
         "group": "shades",
         "uid": 1,
@@ -17,10 +17,215 @@
             "cresnetId": "03"
           }
         }
+      },
+      {
+        "key": "master-door-shade",
+        "name": "Master Door Shade",
+        "type": "csmqmtdc2564cn",
+        "group": "shades",
+        "uid": 1,
+        "properties": {
+          "control": {
+            "cresnetId": "04"
+          }
+        }
+      },
+      {
+        "key": "family-door-shade",
+        "name": "Family Door Shade",
+        "type": "csmqmtdc2564cn",
+        "group": "shades",
+        "uid": 1,
+        "properties": {
+          "control": {
+            "cresnetId": "05"
+          }
+        }
+      },
+      {
+        "key": "family-west-shade",
+        "name": "Family West Shade",
+        "type": "csmqmtdc2564cn",
+        "group": "shades",
+        "uid": 1,
+        "properties": {
+          "control": {
+            "cresnetId": "07"
+          }
+        }
+      },
+      {
+        "key": "family-south-left-shade",
+        "name": "Family South Left Shade",
+        "type": "csmqmtdc2564cn",
+        "group": "shades",
+        "uid": 1,
+        "properties": {
+          "control": {
+            "cresnetId": "08"
+          }
+        }
+      },
+      {
+        "key": "family-south-right-shade",
+        "name": "Family South Right Shade",
+        "type": "csmqmtdc2564cn",
+        "group": "shades",
+        "uid": 1,
+        "properties": {
+          "control": {
+            "cresnetId": "06"
+          }
+        }
+      },
+      {
+        "key": "scene-family-all-open",
+        "name": "Family All Open",
+        "type": "sceneController",
+        "group": "scenes",
+        "uid": 2,
+        "properties": {
+          "items": [
+            {
+              "deviceKey": "family-door-shade",
+              "level": 100
+            },
+            {
+              "deviceKey": "family-west-shade",
+              "level": 100
+            },
+            {
+              "deviceKey": "family-south-left-shade",
+              "level": 100
+            },
+            {
+              "deviceKey": "family-sout-right-shade",
+              "level": 100
+            }
+          ]
+        }
+      },
+      {
+        "key": "scene-family-all-close",
+        "name": "Family All Close",
+        "type": "sceneController",
+        "group": "scenes",
+        "uid": 2,
+        "properties": {
+          "items": [
+            {
+              "deviceKey": "family-door-shade",
+              "level": 0
+            },
+            {
+              "deviceKey": "family-west-shade",
+              "level": 0
+            },
+            {
+              "deviceKey": "family-south-left-shade",
+              "level": 0
+            },
+            {
+              "deviceKey": "family-sout-right-shade",
+              "level": 0
+            }
+          ]
+        }
+      },
+      {
+        "key": "scene-family-windows-partial",
+        "name": "Family Windows Partial",
+        "type": "sceneController",
+        "group": "scenes",
+        "uid": 2,
+        "properties": {
+          "items": [
+            {
+              "deviceKey": "family-west-shade",
+              "level": 20
+            },
+            {
+              "deviceKey": "family-south-left-shade",
+              "level": 20
+            },
+            {
+              "deviceKey": "family-sout-right-shade",
+              "level": 20
+            }
+          ]
+        }
+      },
+      {
+        "key": "family-keypad-1",
+        "name": "Family Keypad 1",
+        "type": "c2nCbdP",
+        "group": "keypads",
+        "uid": 3,
+        "properties": {
+          "control": {
+            "cresnetId": "a1"
+          },
+          "buttons": {
+            "1": {
+              "type": "press",
+              "linkTo": "scene-family-all-open",
+              "command": "run",
+              "feedback": {
+                "type": "scene-basic",
+                "linkTo": "scene-family-all-open"
+              }
+            },
+            "2": {
+              "type": "press",
+              "linkTo": "scene-family-all-close",
+              "command": "run",
+              "feedback": {
+                "type": "scene-basic",
+                "linkTo": "scene-family-all-close"
+              }
+            },
+            "3": {
+              "type": "press",
+              "linkTo": "scene-family-windows-partial",
+              "command": "run",
+              "feedback": {
+                "type": "scene-basic",
+                "linkTo": "scene-family-windows-partial"
+              }
+            },
+            "4": {
+              "type": "press",
+              "linkTo": "family-west-shade",
+              "command": "openCloseOrStop",
+              "feedback": {
+                "type": "shade-basic",
+                "linkTo": "family-west-shade"
+              }
+            },
+            "5": {
+              "type": "press",
+              "linkTo": "family-door-shade",
+              "command": "openCloseOrStop",
+              "feedback": {
+                "type": "shade-basic",
+                "linkTo": "family-door-shade"
+              }
+            },
+            "6": {
+              "type": "press",
+              "linkTo": "scene-south-up-down-stop",
+              "command": "upDownStop",
+              "feedback": {
+                "type": "scene-basic",
+                "linkTo": "scene-south-up-down-stop"
+              }
+            }
+          }
+        }
       }
     ]
   },
-  "system" : {},
+  "system": {},
   "template_url": "https://portal-demo.cloud.pepperdash.com/templates/319b6774-6a71-4dad-952a-a7ac875f1dc8/#/summary",
   "system_url": "https://portal-demo.cloud.pepperdash.com/systems/ce0178af-8ce0-4577-9c52-eeb38f54811e/#/summary"
 }
