@@ -101,10 +101,10 @@ namespace CrestronShades
 		/// <param name="args"></param>
 		void Keypad_ButtonStateChange(Crestron.SimplSharpPro.GenericBase device, ButtonEventArgs args)
 		{
+			Debug.Console(0, this, "Button {0}, {1}", args.Button.Number, args.NewButtonState);
 			if (Buttons.ContainsKey(args.Button.Number))
 			{
 				var type = args.NewButtonState.ToString();
-				Debug.Console(0, this, "Button {0} {1}", args.Button.Number, type);
 				Press(args.Button.Number, type);
 			}
 		}
@@ -121,10 +121,7 @@ namespace CrestronShades
 			var but = Buttons[number];
 			if (but.EventTypes.ContainsKey(type))
 			{
-				foreach (var a in but.EventTypes[type])
-				{
-					DeviceJsonApi.DoDeviceAction(a);
-				}
+				foreach (var a in but.EventTypes[type]) { DeviceJsonApi.DoDeviceAction(a); }
 			}
 		}
 	}

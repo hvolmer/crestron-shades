@@ -277,6 +277,35 @@
             }
           }
         }
+      },
+      {
+        "key": "master-keypad-1",
+        "name": "Master Keypad ",
+        "type": "c2nCbdP",
+        "group": "keypads",
+        "uid": 3,
+        "properties": {
+          "control": {
+            "cresnetId": "a2"
+          },
+          "buttons": {
+            "2": {
+              "eventTypes": {
+                "Tapped": [
+                  {
+                    "deviceKey": "master-door-shade",
+                    "methodName": "OpenCloseOrStop",
+                    "params": []
+                  }
+                ]
+              },
+              "feedback": {
+                "type": "shade-basic",
+                "linkTo": "master-door-shade"
+              }
+            }
+          }
+        }
       }
     ]
   },
