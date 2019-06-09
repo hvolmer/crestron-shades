@@ -3,4 +3,9 @@ devjson:1 {"deviceKey":"family-door-shade","methodName":"Close"}
 devjson:1 {"deviceKey":"family-door-shade","methodName":"SetPosition", "params":[ 50 ]}
 devjson:1 {"deviceKey":"family-south-left-shade","methodName":"Close"}
 devjson:1 {"deviceKey":"family-south-right-shade","methodName":"Close"}
+devjson:1 {"deviceKey":"family-south-right-shade","methodName":"Open"}
+devjson:1 {"deviceKey":"dining-shade","methodName":"Open"}
+devjson:1 {"deviceKey":"scene-family-all-close","methodName":"Run"}
+devjson:1 {"deviceKey":"scene-family-all-open","methodName":"Run"}
 
+devjson:1 {"deviceKey":"family-keypad-1","methodName":"Press", "params":[ 1, "Press" ]}

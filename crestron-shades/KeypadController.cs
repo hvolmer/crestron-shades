@@ -12,11 +12,11 @@ using PepperDash.Essentials.Core.Config;
 
 namespace CrestronShades
 {
-	public class KeypadController: Device
+	public class KeypadController: CrestronGenericBaseDevice
 	{
 		public cresKps.C2nCbdBase Keypad { get; private set; }
 
-		Dictionary<uint, KeypadButton> KeypadButtons = new Dictionary<uint, KeypadButton>();
+		Dictionary<uint, KeypadButton> Buttons = new Dictionary<uint, KeypadButton>();
 
 		/// <summary>
 		/// Essentials loader method.  Called on all implementing classes in plugin dll
@@ -36,7 +36,7 @@ namespace CrestronShades
 		{
 			var control = CommFactory.GetControlPropertiesConfig(dc);
 			var kp = new cresKps.C2nCbdP(control.CresnetIdInt, Global.ControlSystem);
-			return new KeypadController(dc.Key, dc.Name, kp);	
+			return FinishFactory(kp, dc);
 		}
 
 		/// <summary>
@@ -48,7 +48,24 @@ namespace CrestronShades
 		{
 			var control = CommFactory.GetControlPropertiesConfig(dc);
 			var kp = new cresKps.C2nCbdE(control.CresnetIdInt, Global.ControlSystem);
-			return new KeypadController(dc.Key, dc.Name, kp);
+			return FinishFactory(kp, dc);
+		}
+
+		/// <summary>
+		/// Finishes up building a controller
+		/// </summary>
+		/// <param name="kp"></param>
+		/// <param name="dc"></param>
+		/// <returns></returns>
+		static KeypadController FinishFactory(cresKps.C2nCbdBase kp, DeviceConfig dc)
+		{
+			var ctrl = new KeypadController(dc.Key, dc.Name, kp);
+			var butToken = dc.Properties["buttons"];
+			if (butToken != null)
+			{
+				ctrl.Buttons = butToken.ToObject<Dictionary<uint, KeypadButton>>();
+			}
+			return ctrl;
 		}
 
 		/// <summary>
@@ -58,7 +75,7 @@ namespace CrestronShades
 		/// <param name="name"></param>
 		/// <param name="keypad"></param>
 		public KeypadController(string key, string name, cresKps.C2nCbdBase keypad)
-			: base(key, name)
+			: base(key, name, keypad)
 		{
 			Keypad = keypad;
 		}
@@ -71,25 +88,44 @@ namespace CrestronShades
 		{
 			Keypad.ButtonStateChange += new ButtonEventHandler(Keypad_ButtonStateChange);
 
+			// wire up feedbacks
+
+
 			return base.CustomActivate();
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="device"></param>
+		/// <param name="args"></param>
 		void Keypad_ButtonStateChange(Crestron.SimplSharpPro.GenericBase device, ButtonEventArgs args)
 		{
-			
+			if (Buttons.ContainsKey(args.Button.Number))
+			{
+				var type = args.NewButtonState.ToString();
+				Debug.Console(0, this, "Button {0} {1}", args.Button.Number, type);
+				Press(args.Button.Number, type);
+			}
 		}
 
-		void WireUpButtons(DeviceConfig dc)
+		/// <summary>
+		/// Runs the function associated with this button/type. One of the following strings:
+		/// Pressed, Released, Tapped, DoubleTapped, Held, HeldReleased
+		/// </summary>
+		/// <param name="number"></param>
+		/// <param name="type"></param>
+		public void Press(uint number, string type)
 		{
-			if (dc.Properties == null) { return; }
-			var buts = dc.Properties["buttons"];
-			if (buts == null) { return; }
-			KeypadButtons = buts.ToObject<Dictionary<uint, KeypadButton>>();
-
-			// make the presses do something
-
-			// wire up the feedbacks
-
+			if(!Buttons.ContainsKey(number)) { return; }
+			var but = Buttons[number];
+			if (but.EventTypes.ContainsKey(type))
+			{
+				foreach (var a in but.EventTypes[type])
+				{
+					DeviceJsonApi.DoDeviceAction(a);
+				}
+			}
 		}
 	}
-}
+}	

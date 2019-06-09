@@ -20,7 +20,7 @@ namespace CrestronShades
 		/// </summary>
 		public static void LoadPlugin() 
 		{
-			DeviceFactory.AddFactoryForType("scenecontroller", SceneController.GetSceneController);
+			DeviceFactory.AddFactoryForType("sceneController", SceneController.GetSceneController);
 		}
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace CrestronShades
 			try
 			{
 				var sc = new SceneController(dc.Key, dc.Name);
-				sc.SceneItems = dc.Properties["items"].Values<SceneItem>().ToList();
+				sc.SceneItems = dc.Properties["items"].ToObject<List<SceneItem>>();
 				return sc;
 			}
 			catch (Exception e)
@@ -54,6 +54,8 @@ namespace CrestronShades
 
 		bool _IsStopped;
 
+		bool LastCalledWasRun;
+
 		/// <summary>
 		/// Constructor, does nothing
 		/// </summary>
@@ -69,13 +71,20 @@ namespace CrestronShades
 		/// <returns></returns>
 		public override bool CustomActivate()
 		{
-			foreach (var item in SceneItems)
+			Debug.Console(0, this, "Linking to {0} scene items", SceneItems.Count);
+			foreach (var si in SceneItems)
 			{
-				var isf = item as IShadesFeedback;
+				Debug.Console(0, this, "Linking to device {0}", si.DeviceKey);
+				var dev = DeviceManager.GetDeviceForKey(si.DeviceKey);
+				var isf = dev as IShadesFeedback;
 				if (isf != null)
 				{
 					isf.IsStoppedFeedback.OutputChange += new EventHandler<FeedbackEventArgs>(IsStoppedFeedback_OutputChange);
 					isf.PositionFeedback.OutputChange += new EventHandler<FeedbackEventArgs>(PositionFeedback_OutputChange);
+				}
+				else
+				{
+					Debug.Console(0, this, "Device {0} has no feedbacks. Not including in feedback calculations");
 				}
 			}
 
@@ -108,6 +117,11 @@ namespace CrestronShades
 		void IsStoppedFeedback_OutputChange(object sender, FeedbackEventArgs e)
 		{
 			var a = this.GetAllAreStopped();
+			Debug.Console(1, this, "All are stopped = {0}", a);
+			if (a)
+			{
+				Debug.Console(1, this, "All are at scene positions = {0}", GetAllAreAtScene());
+			}
 			if (a != this._IsStopped)
 			{
 				this._IsStopped = a;
@@ -162,6 +176,7 @@ namespace CrestronShades
 		/// </summary>
 		public void Run()
 		{
+			LastCalledWasRun = true;
 			foreach (var si in SceneItems)
 			{
 				var device = DeviceManager.GetDeviceForKey(si.DeviceKey);
@@ -170,6 +185,65 @@ namespace CrestronShades
 					(device as IShadesPosition).SetPosition(si.Level);
 				}
 				// other load types...
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public void Cancel()
+		{
+			LastCalledWasRun = false;
+			foreach (var si in SceneItems)
+			{
+				var device = DeviceManager.GetDeviceForKey(si.DeviceKey);
+				if (device is IShadesPosition)
+				{
+					(device as IShadesPosition).SetPosition(0);
+				}
+				// other load types...
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public void Stop()
+		{
+			foreach (var si in SceneItems)
+			{
+				var device = DeviceManager.GetDeviceForKey(si.DeviceKey);
+				if (device is IShadesStop)
+				{
+					(device as IShadesStop).Stop();
+				}
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public void ToggleOrStop()
+		{
+
+			//	At scene	Moving	LastRun	DO
+			//	T			X		X		Cancel
+			//	F			T		X		Stop
+			//	F			F		T		Cancel
+			//	F			F		F		Run
+
+			if (this._AllAreAtScene)
+			{
+				this.Cancel();
+			}
+			else if (!this._AllAreAtScene)
+			{
+				if (!this._IsStopped) { this.Stop(); }
+				else
+				{
+					if (LastCalledWasRun) { this.Cancel(); }
+					else { this.Run(); }
+				}
 			}
 		}
 	}

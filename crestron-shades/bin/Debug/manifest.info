@@ -1,4 +1,4 @@
-﻿MainAssembly=crestron-shades.dll:4338925cc9d3b84eeac6733b9b558f9c
+﻿MainAssembly=crestron-shades.dll:28682f84ab10594b84d9f5464a57a3eb
 MainAssemblyMinFirmwareVersion=1.009.0029
 MainAssemblyResource=SimplSharpData.dat:820b61c48c8a2cace82957eed4cc377c
 MainAssemblyResource=SimplSharpData.dat.der:bf862965c00f3e6ec535e4e00e82d30c
@@ -23,9 +23,9 @@ DependencySource=PepperDash_Core.dll:334113e08845f51d074dcec4f42e99f9
 DependencyPath=crestron-shades.cplz:PepperDash_Core.dll
 DependencyMainAssembly=PepperDash_Core.dll:334113e08845f51d074dcec4f42e99f9
 ü
-DependencySource=PepperDash_Essentials_Core.dll:acea4b6c1135abfdfc12c42fc0d053fa
+DependencySource=PepperDash_Essentials_Core.dll:1fa619c98b950c0cc6f25437af06029d
 DependencyPath=crestron-shades.cplz:PepperDash_Essentials_Core.dll
-DependencyMainAssembly=PepperDash_Essentials_Core.dll:acea4b6c1135abfdfc12c42fc0d053fa
+DependencyMainAssembly=PepperDash_Essentials_Core.dll:1fa619c98b950c0cc6f25437af06029d
 ü
 DependencySource=SimplSharpNewtonsoft.dll:9c09c5d30daedddf895c36acbface0d5
 DependencyPath=crestron-shades.cplz:SimplSharpNewtonsoft.dll

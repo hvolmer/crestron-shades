@@ -9,6 +9,7 @@ using Crestron.SimplSharpPro.Shades;
 
 using CrestronShadeBase = Crestron.SimplSharpPro.DeviceSupport.ShadeBase;
 
+using PepperDash.Core;
 using PepperDash.Essentials.Core;
 using PepperDash.Essentials.Core.Config;
 using PepperDash.Essentials.Core.Shades;
@@ -102,6 +103,8 @@ namespace CrestronShades
 			if (args.EventId == CrestronShadeBase.IsStoppedEventId)
 			{
 				IsStoppedFeedback.FireUpdate();
+				Debug.Console(1, this, "Shade event IsStoppedFeedback={0}", IsStoppedFeedback.BoolValue);
+				Debug.Console(1, this, "Shade event PositionFeedback={0}", PositionFeedback.UShortValue);
 			}
 			else if (args.EventId == CrestronShadeBase.PositionFeedbackEventId)
 			{
@@ -110,10 +113,12 @@ namespace CrestronShades
 			else if (args.EventId == CrestronShadeBase.IsFullyClosedEventId)
 			{
 				ShadeIsClosedFeedback.FireUpdate();
+				Debug.Console(1, this, "Shade event ShadeIsClosedFeedback={0}", ShadeIsClosedFeedback.BoolValue);
 			}
 			else if (args.EventId == CrestronShadeBase.IsFullyOpenedEventId)
 			{
 				ShadeIsOpenFeedback.FireUpdate();
+				Debug.Console(1, this, "Shade event ShadeIsOpenFeedback={0}", ShadeIsOpenFeedback.BoolValue);
 			}
 		}
 
@@ -169,6 +174,10 @@ namespace CrestronShades
 				{
 					Close();
 				}
+			}
+			else
+			{
+				Stop();
 			}
 		}
 

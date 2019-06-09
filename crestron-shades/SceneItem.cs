@@ -11,6 +11,11 @@ namespace CrestronShades
 		public int Delay { get; set; }
 		public int Time { get; set; }
 		public ushort Level { get; set; }
+		//public int LevelPercent
+		//{
+		//    get { return  }
+		//    set { Level = (ushort)(value * 63335 / 100); }
+		//}
 		public string DeviceKey { get; set; }
 	}
 }

@@ -88,19 +88,19 @@
           "items": [
             {
               "deviceKey": "family-door-shade",
-              "level": 100
+              "level": 65535
             },
             {
               "deviceKey": "family-west-shade",
-              "level": 100
+              "level": 65535
             },
             {
               "deviceKey": "family-south-left-shade",
-              "level": 100
+              "level": 65535
             },
             {
-              "deviceKey": "family-sout-right-shade",
-              "level": 100
+              "deviceKey": "family-south-right-shade",
+              "level": 65535
             }
           ]
         }
@@ -126,7 +126,7 @@
               "level": 0
             },
             {
-              "deviceKey": "family-sout-right-shade",
+              "deviceKey": "family-south-right-shade",
               "level": 0
             }
           ]
@@ -142,15 +142,34 @@
           "items": [
             {
               "deviceKey": "family-west-shade",
-              "level": 20
+              "level": 10000
             },
             {
               "deviceKey": "family-south-left-shade",
-              "level": 20
+              "level": 10000
             },
             {
-              "deviceKey": "family-sout-right-shade",
-              "level": 20
+              "deviceKey": "family-south-right-shade",
+              "level": 10000
+            }
+          ]
+        }
+      },
+      {
+        "key": "scene-family-windows-south-open",
+        "name": "Family Windows South Open",
+        "type": "sceneController",
+        "group": "scenes",
+        "uid": 2,
+        "properties": {
+          "items": [
+            {
+              "deviceKey": "family-south-left-shade",
+              "level": 65535
+            },
+            {
+              "deviceKey": "family-south-right-shade",
+              "level": 65535
             }
           ]
         }
@@ -167,57 +186,78 @@
           },
           "buttons": {
             "1": {
-              "type": "press",
-              "linkTo": "scene-family-all-open",
-              "command": "run",
+              "eventTypes": {
+                "Tapped": [
+                  {
+                    "deviceKey": "scene-family-all-open",
+                    "methodName": "Run",
+                    "params": []
+                  }
+                ]
+              },
               "feedback": {
                 "type": "scene-basic",
                 "linkTo": "scene-family-all-open"
               }
             },
             "2": {
-              "type": "press",
-              "linkTo": "scene-family-all-close",
-              "command": "run",
+              "eventTypes": {
+                "Tapped": [
+                  {
+                    "deviceKey": "scene-family-all-close",
+                    "methodName": "Run",
+                    "params": []
+                  }
+                ]
+              },
               "feedback": {
                 "type": "scene-basic",
                 "linkTo": "scene-family-all-close"
               }
             },
             "3": {
-              "type": "press",
-              "linkTo": "scene-family-windows-partial",
-              "command": "run",
-              "feedback": {
-                "type": "scene-basic",
-                "linkTo": "scene-family-windows-partial"
-              }
-            },
-            "4": {
-              "type": "press",
-              "linkTo": "family-west-shade",
-              "command": "openCloseOrStop",
-              "feedback": {
-                "type": "shade-basic",
-                "linkTo": "family-west-shade"
-              }
-            },
-            "5": {
-              "type": "press",
-              "linkTo": "family-door-shade",
-              "command": "openCloseOrStop",
+              "eventTypes": {
+                "Tapped": [
+                  {
+                    "deviceKey": "family-door-shade",
+                    "methodName": "OpenCloseOrStop",
+                    "params": []
+                  }
+                ]
+              },
               "feedback": {
                 "type": "shade-basic",
                 "linkTo": "family-door-shade"
               }
             },
-            "6": {
-              "type": "press",
-              "linkTo": "scene-south-up-down-stop",
-              "command": "upDownStop",
+            "5": {
+              "eventTypes": {
+                "Tapped": [
+                  {
+                    "deviceKey": "scene-family-windows-south-open",
+                    "methodName": "ToggleOrStop",
+                    "params": []
+                  }
+                ]
+              },
               "feedback": {
                 "type": "scene-basic",
-                "linkTo": "scene-south-up-down-stop"
+                "linkTo": "scene-family-windows-south-open"
+              }
+            },
+            "6": {
+              "eventTypes": {
+                "Tapped": [
+                  {
+                    "deviceKey": "dining-shade",
+                    "methodName": "OpenCloseOrStop",
+                    "params": []
+                  }
+                ]
+              },
+              "feedback": {
+                "type": "shade-basic",
+                "linkTo": "dining-shade"
               }
             }
           }
