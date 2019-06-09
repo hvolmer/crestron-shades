@@ -230,6 +230,21 @@
                 "linkTo": "family-door-shade"
               }
             },
+            "4": {
+              "eventTypes": {
+                "Tapped": [
+                  {
+                    "deviceKey": "family-west-shade",
+                    "methodName": "OpenCloseOrStop",
+                    "params": []
+                  }
+                ]
+              },
+              "feedback": {
+                "type": "shade-basic",
+                "linkTo": "family-west-shade"
+              }
+            },
             "5": {
               "eventTypes": {
                 "Tapped": [

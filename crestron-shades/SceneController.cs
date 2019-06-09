@@ -225,18 +225,17 @@ namespace CrestronShades
 		/// </summary>
 		public void ToggleOrStop()
 		{
-
 			//	At scene	Moving	LastRun	DO
 			//	T			X		X		Cancel
 			//	F			T		X		Stop
 			//	F			F		T		Cancel
 			//	F			F		F		Run
 
-			if (this._AllAreAtScene)
+			if (this.GetAllAreAtScene())
 			{
 				this.Cancel();
 			}
-			else if (!this._AllAreAtScene)
+			else
 			{
 				if (!this._IsStopped) { this.Stop(); }
 				else
