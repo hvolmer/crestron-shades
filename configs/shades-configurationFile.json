@@ -31,6 +31,18 @@
         }
       },
       {
+        "key": "master-corner-shade",
+        "name": "Master Corner Shade",
+        "type": "csmqmtdc2564cn",
+        "group": "shades",
+        "uid": 1,
+        "properties": {
+          "control": {
+            "cresnetId": "09"
+          }
+        }
+      },
+      {
         "key": "family-door-shade",
         "name": "Family Door Shade",
         "type": "csmqmtdc2564cn",
@@ -302,6 +314,21 @@
               "feedback": {
                 "type": "shade-basic",
                 "linkTo": "master-door-shade"
+              }
+            },
+            "4": {
+              "eventTypes": {
+                "Tapped": [
+                  {
+                    "deviceKey": "master-corner-shade",
+                    "methodName": "OpenCloseOrStop",
+                    "params": []
+                  }
+                ]
+              },
+              "feedback": {
+                "type": "shade-basic",
+                "linkTo": "master-corner-shade"
               }
             }
           }
