@@ -178,7 +178,7 @@
         "key": "family-keypad-1",
         "name": "Family Keypad 1",
         "type": "c2nCbdP",
-        "group": "keypads",
+        "group": "keypads",     
         "uid": 3,
         "properties": {
           "control": {

@@ -17,6 +17,7 @@ namespace CrestronShades
 		public cresKps.C2nCbdBase Keypad { get; private set; }
 
 		Dictionary<uint, KeypadButton> Buttons = new Dictionary<uint, KeypadButton>();
+		List<KeypadButtonFeedbackBase> Feedbacks = new List<KeypadButtonFeedbackBase>();
 
 		/// <summary>
 		/// Essentials loader method.  Called on all implementing classes in plugin dll
@@ -88,8 +89,8 @@ namespace CrestronShades
 		{
 			Keypad.ButtonStateChange += new ButtonEventHandler(Keypad_ButtonStateChange);
 
-			// wire up feedbacks
-
+			//TODO wire up feedbacks
+			
 
 			return base.CustomActivate();
 		}

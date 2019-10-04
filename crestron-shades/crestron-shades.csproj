@@ -98,10 +98,12 @@
     <Compile Include="CaseInsenstiveDictionary.cs" />
     <Compile Include="CrestronBasicShadesController.cs" />
     <Compile Include="KeypadButton.cs" />
+    <Compile Include="KeypadButtonFeedbackBase.cs" />
     <Compile Include="KeypadController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SceneController.cs" />
     <Compile Include="SceneItem.cs" />
+    <Compile Include="ShadeBasicFeedback.cs" />
     <None Include="Properties\ControlSystem.cfg" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
